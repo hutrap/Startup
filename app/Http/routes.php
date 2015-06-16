@@ -21,6 +21,21 @@ Route::get('news/{id}', 'ArticlesController@show');
 Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
 
+Route::get('comment', function() {
+    return view('comments.comment');
+});
+
+// API ROUTES ==================================
+Route::group(array('prefix' => 'api'), function() {
+
+    // since we will be using this just for CRUD, we won't need create and edit
+    // Angular will handle both of those forms
+    // this ensures that a user can't access api/create or api/edit when there's nothing there
+    Route::resource('comments', 'CommentController',
+        array('only' => array('index', 'store', 'destroy')));
+});
+
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',

@@ -19,6 +19,9 @@
                 <li class="{{ (Request::is('about') ? 'active' : '') }}">
                     <a href="{!! URL::to('about') !!}">About</a>
                 </li>
+                <li class="{{ (Request::is('comment') ? 'active' : '') }}">
+                    <a href="{!! URL::to('comment') !!}">Comments</a>
+                </li>
                 <li class="{{ (Request::is('contact') ? 'active' : '') }}">
                     <a href="{!! URL::to('contact') !!}">Contact</a>
                 </li>
