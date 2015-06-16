@@ -10,7 +10,7 @@ class ArticleCategoriesTableSeeder extends Seeder
 
 	public function run()
 	{
-		TestDummy::times(5)->create('App\ArticleCategory');
+        TestDummy::times(5)->create('App\ArticleCategory');
 	}
 
 }
