@@ -50,27 +50,26 @@ class HomeController extends Controller {
 			1)->orderBy('photos.position', 'DESC')->orderBy('photos.created_at', 'DESC')->select('photos.filename',
 			'photos.name', 'photos.description', 'photo_albums.folder_id')->get();
 
-		$photoAlbums = PhotoAlbum::select(array(
-			'photo_albums.id',
-			'photo_albums.name',
-			'photo_albums.description',
-			'photo_albums.folder_id',
-			DB::raw('(select filename from ' . DB::getTablePrefix() . 'photos WHERE album_cover=TRUE and ' . DB::getTablePrefix() . 'photos.photo_album_id=' . DB::getTablePrefix() . 'photo_albums.id LIMIT 1) AS album_image'),
-			DB::raw('(select filename from ' . DB::getTablePrefix() . 'photos WHERE ' . DB::getTablePrefix() . 'photos.photo_album_id=' . DB::getTablePrefix() . 'photo_albums.id ORDER BY position ASC, id ASC LIMIT 1) AS album_image_first')
-		))->limit(8)->get();
-
-		$videoAlbums = VideoAlbum::select(array(
-			'video_albums.id',
-			'video_albums.name',
-			'video_albums.description',
-			'video_albums.folder_id',
-			DB::raw('(select youtube from ' . DB::getTablePrefix() . 'videos WHERE album_cover=TRUE and ' . DB::getTablePrefix() . 'videos.video_album_id=' . DB::getTablePrefix() . 'video_albums.id LIMIT 1) AS album_image'),
-			DB::raw('(select youtube from ' . DB::getTablePrefix() . 'videos WHERE ' . DB::getTablePrefix() . 'videos.video_album_id=' . DB::getTablePrefix() . 'video_albums.id ORDER BY position ASC, id ASC LIMIT 1) AS album_image_first')
-		))->limit(8)->get();
+        $photoAlbums = $this->getAlbumContent('App\PhotoAlbum', 'photo', 'filename');
+        $videoAlbums = $this->getAlbumContent('App\VideoAlbum', 'video', 'youtube');
 
 		return view('pages.home', compact('articles', 'sliders', 'videoAlbums', 'photoAlbums'));
-
 		//return view('pages.welcome');
 	}
+
+    private function getAlbumContent($class_name, $table_name, $field)
+    {
+        $album_table = $table_name.'s';
+        $albums = $class_name::select(array(
+            $table_name.'_albums.id',
+            $table_name.'_albums.name',
+            $table_name.'_albums.description',
+            $table_name.'_albums.folder_id',
+            DB::raw('(select '.$field. ' from ' . DB::getTablePrefix() . $album_table.' WHERE album_cover=TRUE and ' . DB::getTablePrefix() . $album_table.'.'.$table_name.'_album_id=' . DB::getTablePrefix() . $table_name.'_albums.id LIMIT 1) AS album_image'),
+            DB::raw('(select '.$field. ' from ' . DB::getTablePrefix() . $album_table.' WHERE ' . DB::getTablePrefix() . $album_table.'.'.$table_name.'_album_id=' . DB::getTablePrefix() . $table_name.'_albums.id ORDER BY position ASC, id ASC LIMIT 1) AS album_image_first')
+        ))->limit(8)->get();
+
+        return $albums;
+    }
 
 }
