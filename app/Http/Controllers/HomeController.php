@@ -2,8 +2,6 @@
 
 use App\Article;
 use App\Photo;
-use App\VideoAlbum;
-use App\PhotoAlbum;
 use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\DB;
 
@@ -54,7 +52,6 @@ class HomeController extends Controller {
         $videoAlbums = $this->getAlbumContent('App\VideoAlbum', 'video', 'youtube');
 
 		return view('pages.home', compact('articles', 'sliders', 'videoAlbums', 'photoAlbums'));
-		//return view('pages.welcome');
 	}
 
     private function getAlbumContent($class_name, $table_name, $field)
