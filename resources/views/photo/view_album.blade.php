@@ -1,5 +1,8 @@
-@extends('app') @section('title') {{{
-$photo_album->name }}} :: @parent @stop @section('content')
+@extends('app')
+@section('title') {{{
+$photo_album->name }}} :: @parent
+@stop
+@section('content')
 <h3>{{{ $photo_album->name }}}</h3>
 
 <div id="mygallery">
@@ -11,7 +14,8 @@ $photo_album->name }}} :: @parent @stop @section('content')
 	</a> 
 	@endforeach
 </div>
-@stop @section('scripts')
+@stop
+@section('scripts')
 <script>
         $("#mygallery").justifiedGallery();
     </script>

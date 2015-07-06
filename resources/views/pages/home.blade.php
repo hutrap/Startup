@@ -1,9 +1,51 @@
 @extends('app')
 @section('title') Home :: @parent @stop
+
 @section('content')
-<div class="row">
+
+    <script>
+        function startStopwatch(callback, interval) {
+            alert('das');
+            // Write the code that goes here
+        }
+
+        function callback(counter) {
+            console.log(counter);
+            return counter < 5;
+        }
+
+        //Expected: 1, 2, 3, 4, 5 with 50ms interval.
+        startStopwatch(callback, 50);
+
+/*
+        $( document ).ready(function() {
+            alert($('#home_title').html());
+        });
+
+        function average(a, b) {
+            return (a + b) / 2;
+        }
+        alert(average(4,8));
+
+*/
+
+function registerHandlers() {
+    var as = document.getElementsByTagName('a');
+    for (i = as.length; i-- >= 0;) {
+        as[i].onclick = function() {
+            alert(i);
+            return false;
+        }
+    }
+}
+
+
+     </script>
+
+<a></a>
+ <div class="row">
     <div class="page-header">
-        <h2>Home Page</h2>
+        <h2 id="home_title">Home Page</h2>
     </div></div>
 
     @if(count($articles)>0)
