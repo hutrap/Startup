@@ -146,6 +146,8 @@ return [
 		'Laracasts\Flash\FlashServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
         'Intervention\Image\ImageServiceProvider',
+//        'Laravel\Socialite\Facades\Socialite',
+		'Laravel\Cashier\CashierServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -214,6 +216,7 @@ return [
 		'Flash' => 'laracasts/Flash/Flash',
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
         'Image' => 'Intervention\Image\Facades\Image',
+  //      'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 

@@ -2,6 +2,7 @@
 
 use App\Article;
 use App\Photo;
+use App\User;
 use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\DB;
 
@@ -41,8 +42,6 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = Article::with('author')->orderBy('position', 'DESC')->orderBy('created_at', 'DESC')->limit(4)->get();
-
 //		TODO: abstract to model
 		$sliders = Photo::join('photo_albums', 'photo_albums.id', '=', 'photos.photo_album_id')->where('photos.slider',
 			1)->orderBy('photos.position', 'DESC')->orderBy('photos.created_at', 'DESC')->select('photos.filename',

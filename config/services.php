@@ -34,4 +34,14 @@ return [
 		'secret' => '',
 	],
 
+    'github' => [
+        'client_id' => '929d717e8a1fd49b233c',
+        'client_secret' => 'e878acb6b3959620df821806687a2fd7068d5135',
+        'redirect' => '',
+    ],
+
+	'stripe' => [
+		'model'  => 'User',
+		'secret' => env('STRIPE_API_SECRET'),
+	],
 ];
