@@ -42,8 +42,10 @@ class HomeController extends Controller {
 	public function index()
 	{
 
+		$articles = Article::with('author')->orderBy('position', 'DESC')->orderBy('created_at', 'DESC')->limit(4)->get();
 
 //		TODO: abstract to model
+
 		$sliders = Photo::join('photo_albums', 'photo_albums.id', '=', 'photos.photo_album_id')->where('photos.slider',
 			1)->orderBy('photos.position', 'DESC')->orderBy('photos.created_at', 'DESC')->select('photos.filename',
 			'photos.name', 'photos.description', 'photo_albums.folder_id')->get();
@@ -52,6 +54,7 @@ class HomeController extends Controller {
         $videoAlbums = $this->getAlbumContent('App\VideoAlbum', 'video', 'youtube');
 
 		return view('pages.home', compact('articles', 'sliders', 'videoAlbums', 'photoAlbums'));
+
 	}
 
     private function getAlbumContent($class_name, $table_name, $field)
