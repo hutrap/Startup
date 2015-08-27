@@ -35,7 +35,6 @@
         .comment    { padding-bottom:20px; }
     </style>
 
-
     @yield('styles')
 
     <!-- Fonts -->
@@ -50,7 +49,8 @@
 
     <!-- JS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script> <!-- load angular -->
+    <script src="../js/node_modules/angular/angular.min.js"></script> <!-- load angular -->
+<!--    <script src="../js/Recorderjs/recorder.js"></script> --> <!-- load recorder -->
 
     <!-- ANGULAR -->
     <!-- all angular resources will be loaded from the /public folder -->

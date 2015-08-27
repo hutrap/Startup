@@ -22,8 +22,16 @@ Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
 
 Route::get('comment', function() {
-    return view('comments.comment');
+    return view('pages.comment');
 });
+Route::get('recorder', function() {
+    return view('pages.recorder');
+});
+
+Route::get('recorder1', function() {
+    return view('pages.recorder1');
+});
+
 
 // API ROUTES ==================================
 Route::group(array('prefix' => 'api'), function() {

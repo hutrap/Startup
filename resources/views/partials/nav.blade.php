@@ -22,6 +22,12 @@
                 <li class="{{ (Request::is('comment') ? 'active' : '') }}">
                     <a href="{!! URL::to('comment') !!}">Comments</a>
                 </li>
+                <li class="{{ (Request::is('recorder') ? 'active' : '') }}">
+                    <a href="{!! URL::to('recorder') !!}">Recorder</a>
+                </li>
+                <li class="{{ (Request::is('recorder1') ? 'active' : '') }}">
+                    <a href="{!! URL::to('recorder1') !!}">Recorder1</a>
+                </li>
                 <li class="{{ (Request::is('contact') ? 'active' : '') }}">
                     <a href="{!! URL::to('contact') !!}">Contact</a>
                 </li>
